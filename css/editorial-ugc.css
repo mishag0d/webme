@@ -14,35 +14,11 @@
 }
 
 @font-face {
-    font-family: 'Style Script';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../assets/fonts/StyleScript-Regular.ttf') format('truetype');
-}
-
-@font-face {
     font-family: 'Alex Brush';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: url('../assets/fonts/AlexBrush-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Allura';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../assets/fonts/Allura-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Great Vibes';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('../assets/fonts/GreatVibes-Regular.ttf') format('truetype');
 }
 
 /* --- 1. DESIGN TOKENS --- */
@@ -78,7 +54,7 @@
 
     /* Tipografías */
     --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-    --font-script: 'Pinyon Script', 'Alex Brush', cursive;
+    --font-script: 'Alex Brush', 'Great Vibes', cursive;
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     /* Transiciones & Sombras Suaves */
@@ -303,33 +279,17 @@ body {
 
 /* Nombre Caligráfico Pinyon Script Nítido y Protagónico */
 .hero-live-name {
-    font-family: var(--font-script);
+    font-family: 'Pinyon Script', cursive;
     font-size: clamp(5rem, 8.5vw, 8rem);
     font-weight: 400;
     color: var(--guinda-deep);
     line-height: 1.05;
     margin-bottom: 20px;
     letter-spacing: 0.5px;
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
+    display: block;
     white-space: nowrap;
     text-shadow: none;
     user-select: none;
-}
-
-.hero-live-heart {
-    font-size: 0.44em;
-    color: #f7a8b8;
-    display: inline-block;
-    transform: rotate(14deg) translateY(-8px);
-    filter: drop-shadow(0 2px 6px rgba(247, 168, 184, 0.4));
-    animation: heartFloat 3s ease-in-out infinite alternate;
-}
-
-@keyframes heartFloat {
-    0% { transform: rotate(12deg) translateY(-6px) scale(1); }
-    100% { transform: rotate(18deg) translateY(-12px) scale(1.14); }
 }
 
 /* Subtítulo UGC Desahogado, Nítido & Espaciado (Cero Amontonamiento) */
@@ -356,11 +316,13 @@ body {
     margin: 0 4px;
 }
 
-/* Botones de Redes Sociales Ligeros & Estilizados (Sin círculos blancos toscos) */
+/* Botones de Redes Sociales Ligeros, Estilizados & Centrados */
 .hero-wall-socials {
     display: flex;
-    gap: 16px;
+    justify-content: center;
+    gap: 18px;
     align-items: center;
+    width: 100%;
 }
 
 .hero-wall-social-btn {
