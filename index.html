@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasielPlays | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <style>
+        /* --- 1. BASE --- */
+        :root {
+            --color-accent: #FFB7C5; 
+            --color-bg: #050505; 
+            --color-surface: #121212; 
+            --font-primary: 'Montserrat', sans-serif;
+            --font-tech: 'Share Tech Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. NAV & HERO --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; /* Padding reducido para alinear mejor */
+            background: rgba(5,5,5,0.95); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: #fff; }
+        .highlight { color: var(--color-accent); }
+        
+        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+        .nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--color-accent); }
+
+        /* CORRECCIÓN BOTÓN CONTACTO DEL MENÚ */
+        .nav-btn {
+            padding: 10px 25px !important;
+            background: var(--color-accent);
+            color: #000 !important;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: #fff; transform: translateY(-2px); }
+
+        .hero {
+            height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: radial-gradient(circle, rgba(20,20,20,0.6), #050505), url('img/portada.png');
+            background-size: cover; background-position: center;
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; font-weight: 900; line-height: 1; }
+        
+        /* Botón Grande de la Portada */
+        .btn { padding: 15px 40px; background: var(--color-accent); color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; text-transform: uppercase; display: inline-block; transition: 0.3s; cursor: pointer; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,183,197,0.3); }
+
+        /* REDES SOCIALES EN PORTADA (NUEVO) */
+        .hero-socials {
+            display: flex; gap: 25px; justify-content: center; margin-top: 40px;
+        }
+        .hero-socials a {
+            color: rgba(255,255,255,0.7); font-size: 1.8rem; transition: 0.3s;
+        }
+        .hero-socials a:hover { color: var(--color-accent); transform: scale(1.2); }
+
+        /* --- 3. GALERÍA --- */
+        .gallery-section { padding: 80px 0; background: #000; position: relative; }
+        .gallery-container { width: 100%; margin: 0 auto; position: relative; padding: 0 60px; }
+        .swiper { width: 100%; padding: 20px 0; }
+        .swiper-slide { 
+            height: auto; aspect-ratio: 1 / 1; border-radius: 15px; overflow: hidden; opacity: 0.4; transition: 0.5s; 
+            border: 1px solid #333;
+        }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .swiper-slide-active { opacity: 1; transform: scale(1.1); z-index: 10; border: 2px solid var(--color-accent); box-shadow: 0 0 30px rgba(255,183,197,0.3); }
+
+        .swiper-button-prev, .swiper-button-next { color: var(--color-accent) !important; font-weight: bold; width: 35px; height: 35px; }
+        .swiper-button-next::after, .swiper-button-prev::after { font-size: 20px !important; }
+        .swiper-button-prev { left: 15px !important; }
+        .swiper-button-next { right: 15px !important; }
+
+        /* --- 4. SOBRE MÍ --- */
+        .about-section {
+            padding: 120px 5%; background: #080808; 
+            display: flex; justify-content: center; align-items: center;
+        }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; max-width: 1500px; align-items: center; width: 100%; }
+        
+        .about-img-frame { 
+            position: relative; border-radius: 30px; border: 1px solid #333; overflow: hidden; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .about-img-frame img { width: 100%; display: block; }
+        
+        .about-text h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; font-weight: 900; }
+        .subtitle { font-size: 1.5rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px; font-weight: 700; }
+        .desc { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; max-width: 600px; line-height: 1.8; }
+        
+        .stats-bar { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid #333; padding-top: 30px; }
+        .stat-item h3 { font-size: 2.5rem; color: #fff; margin-bottom: 5px; }
+        .stat-item p { color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- 5. SERVICIOS --- */
+        .services-section { background: var(--color-surface); padding: 120px 5%; text-align: center; border-top: 1px solid #222; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 15px; }
+        .section-subtitle { color: #888; font-size: 1.2rem; margin-bottom: 60px; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .service-card { background: #1a1a1a; padding: 50px 40px; border-radius: 20px; transition: 0.4s; border-bottom: 5px solid transparent; text-align: left; }
+        .service-card:hover { transform: translateY(-15px); border-bottom-color: var(--color-accent); background: #222; }
+        .service-icon { font-size: 3rem; color: var(--color-accent); margin-bottom: 30px; }
+        .service-card h3 { font-size: 1.8rem; margin-bottom: 15px; color: #fff; }
+        .service-card p { font-size: 1.1rem; color: #aaa; }
+
+        /* --- 6. MASCOTAS --- */
+        .pets { background: linear-gradient(135deg, #FFB7C5 0%, #ff8fa3 100%); padding: 100px 5%; text-align: center; color: #000; }
+        .pet-cards { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .pet-card { background: rgba(255,255,255,0.6); padding: 30px; border-radius: 30px; backdrop-filter: blur(10px); width: 250px; }
+        .pet-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 5px solid #fff; }
+
+        /* --- 7. SETUP (NUEVO) --- */
+        .setup-section { 
+            padding: 100px 5%; background: #0b0b0b; border-top: 1px solid #333;
+            background-image: radial-gradient(#222 1px, transparent 1px); background-size: 30px 30px;
+        }
+        .tech-font { font-family: var(--font-tech); }
+        .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .spec-card { background: rgba(18, 18, 18, 0.9); border: 1px solid #333; padding: 25px; position: relative; }
+        .spec-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--color-accent); }
+        .spec-list { list-style: none; margin-top: 20px; color: #aaa; font-family: var(--font-tech); font-size: 0.95rem; }
+        .spec-list li { margin-bottom: 12px; border-bottom: 1px dashed #333; padding-bottom: 5px; display: flex; justify-content: space-between; }
+        .spec-list span:first-child { color: #fff; font-weight: bold; }
+
+        /* --- 8. FOOTER --- */
+        .social-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
+        .social-link { width: 50px; height: 50px; background: #222; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; font-size: 1.3rem; transition: 0.3s; border: 1px solid #333; }
+        .social-link:hover { background: var(--color-accent); color: #000; transform: translateY(-5px); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
+            .hero h1 { font-size: 3rem; }
+            .gallery-container { padding: 0 40px; }
+            .navbar { padding: 15px 5%; }
+            .swiper-button-prev { left: 0 !important; }
+            .swiper-button-next { right: 0 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Masiel<span class="highlight">Plays</span></div>
+        <ul class="nav-links">
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#pets">Mascotas</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#setup">Setup</a></li>
+            <li><a href="#contact" class="nav-btn">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">MASIEL PLAYS</h1>
+            <h2 style="color:var(--color-accent); letter-spacing:4px; margin-bottom:20px;" data-aos="fade-up" data-aos-delay="200">GAMER & CREATOR</h2>
+            
+            <div data-aos="fade-up" data-aos-delay="300">
+                <a href="#about" class="btn">Conóceme</a>
+            </div>
+
+            <div class="hero-socials" data-aos="fade-up" data-aos-delay="400">
+                <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                <a href="#" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section" data-aos="fade-up">
+        <div class="gallery-container">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="img/f1.png" alt="1"></div>
+                    <div class="swiper-slide"><img src="img/f2.png" alt="2"></div>
+                    <div class="swiper-slide"><img src="img/f3.png" alt="3"></div>
+                    <div class="swiper-slide"><img src="img/f4.jpeg" alt="4"></div>
+                    <div class="swiper-slide"><img src="img/f5.jpeg" alt="5"></div>
+                    <div class="swiper-slide"><img src="img/f6.jpeg" alt="6"></div>
+                    <div class="swiper-slide"><img src="img/f7.jpg" alt="7"></div>
+                    <div class="swiper-slide"><img src="img/f8.png" alt="1"></div>
+                    <div class="swiper-slide"><img src="img/f9.png" alt="2"></div>
+                    <div class="swiper-slide"><img src="img/f10.jpg" alt="3"></div>
+                    <div class="swiper-slide"><img src="img/f11.jpg" alt="4"></div>
+                    <div class="swiper-slide"><img src="img/f12.jpg" alt="5"></div>
+                    <div class="swiper-slide"><img src="img/f13.png" alt="6"></div>
+                    <div class="swiper-slide"><img src="img/f14.jpg" alt="7"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-grid">
+            <div class="about-img-frame" data-aos="fade-right">
+                <img src="img/perfil.jpeg" alt="Profile">
+            </div>
+            <div class="about-text" data-aos="fade-left">
+                <h2>DETRÁS DEL<br><span class="highlight">NICKNAME</span></h2>
+                <p class="subtitle">Masiel | Level 26 | Perú</p>
+                <p class="desc">
+                    ¡Hola! Soy Masiel, conocida como <strong>MasielPlays</strong>. 
+                    Equilibro la vida académica con la creación de contenido y el gaming competitivo.
+                </p>
+                <div class="stats-bar">
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                        <h3 style="color:#fff;">Dota 2</h3>
+                        <p>6K MMR • Support</p>
+                    </div>
+                    
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                        <h3 style="color:#fff;">+10 Años</h3>
+                        <p>Gaming Exp</p>
+                    </div>
+                    
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <h3 style="color:#fff;">+6 Años</h3>
+                        <p>UGC & Influencer</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pets" class="pets">
+        <h2 style="font-size: 2.5rem;" data-aos="fade-down">MIS COMPAÑEROS 🐾</h2>
+        <div class="pet-cards">
+            <div class="pet-card" data-aos="zoom-in" data-aos-delay="100">
+                <img src="img/balto.jpg" alt="Perro">
+                <h3>BALTO</h3>
+            </div>
+            <div class="pet-card" data-aos="zoom-in" data-aos-delay="200">
+                <img src="img/laska.jpg" alt="Gato">
+                <h3>LASKA</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="section-header">
+            <h2 data-aos="fade-up">TRABAJEMOS <span class="highlight">JUNTOS</span> 🚀</h2>
+            <p class="section-subtitle" data-aos="fade-up">Creo contenido auténtico que conecta marcas con nuevas audiencias.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                <h3>Contenido UGC</h3>
+                <p>Videos nativos para TikTok y Reels. Unboxing, reviews honestas y vlogs de estilo de vida que conectan.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                <h3>Campañas de Marca</h3>
+                <p>Integración orgánica de tu producto en mi setup o rutina diaria de estudiante/gamer.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>Sponsorships</h3>
+                <p>Embajadora de marca a largo plazo, banners en stream y menciones en vivo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="setup" class="setup-section">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:40px; flex-wrap:wrap;">
+                <div data-aos="fade-right">
+                    <h4 style="color:var(--color-accent); letter-spacing:2px; margin-bottom:5px;" class="tech-font">TECHNICAL SPECS</h4>
+                    <h2 style="font-size:3rem; line-height:1;">MI <span style="color:#fff">BATTLE STATION</span></h2>
+                </div>
+                <a href="https://amazon.com" target="_blank" class="btn btn-primary" style="background:#fff; color:#000; margin-top:20px;" data-aos="fade-left">
+                    <i class="fa-brands fa-amazon"></i> AmazonList
+                </a>
+            </div>
+
+            <div class="setup-grid">
+                <div class="spec-card" data-aos="fade-up">
+                    <h3 style="color:#fff; margin-bottom: 15px;"><i class="fa-solid fa-microchip" style="margin-right:10px; color:#555;"></i> MAIN RIG</h3>
+                    <ul class="spec-list">
+                        <li><span>CPU</span> <span>Intel Core i7 12700K</span></li>
+                        <li><span>GPU</span> <span>NVIDIA RTX 3060 Ti</span></li>
+                        <li><span>RAM</span> <span>32GB Corsair</span></li>
+                        <li><span>MOBO</span> <span>ASUS ROG Strix</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 style="color:#fff; margin-bottom: 15px;"><i class="fa-solid fa-keyboard" style="margin-right:10px; color:#555;"></i> GEAR</h3>
+                    <ul class="spec-list">
+                        <li><span>Mouse</span> <span>Logitech G Pro X</span></li>
+                        <li><span>Teclado</span> <span>Razer Huntsman</span></li>
+                        <li><span>Headset</span> <span>HyperX Cloud II</span></li>
+                        <li><span>Mic</span> <span>Shure MV7</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 style="color:#fff; margin-bottom: 15px;"><i class="fa-solid fa-video" style="margin-right:10px; color:#555;"></i> STREAM</h3>
+                    <ul class="spec-list">
+                        <li><span>Cámara</span> <span>Sony A6000</span></li>
+                        <li><span>Luz</span> <span>Elgato Key Light</span></li>
+                        <li><span>Deck</span> <span>Stream Deck MK.2</span></li>
+                        <li><span>Monitor</span> <span>LG Ultragear 144Hz</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" style="background: #000; padding: 80px 5%; border-top: 1px solid #111; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: white;" data-aos="fade-up">¿LISTO PARA <span class="highlight">CREAR?</span></h2>
+        <p style="color: #aaa; margin-bottom: 50px; font-size: 1.1rem;" data-aos="fade-up" data-aos-delay="100">
+            Encuéntrame en mis redes o envíame un correo para colaboraciones.
+        </p>
+        
+        <div class="social-container" data-aos="fade-up" data-aos-delay="200">
+            <a href="#" class="social-link" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-link" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+        
+        <a href="mailto:masielplays@gmail.com" class="btn btn-primary" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-solid fa-envelope"></i> Contactar por Correo
+        </a>
+
+        <div style="margin-top: 60px; color: #444; font-size: 0.9rem;">
+            <p>&copy; 2026 MasielPlays | Creadora de Contenido & Gamer</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        // 1. INICIAR ANIMACIONES
+        AOS.init({ duration: 1000, once: true });
+
+        // 2. PARCHE "ANTIBUG" PARA QUE NO DESAPAREZCA NADA
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                AOS.refresh(); 
+            }, 500);
+        });
+
+        // 3. SCROLL SUAVE (CORRECCIÓN)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 4. CARRUSEL
+        new Swiper(".mySwiper", {
+            slidesPerView: 2, spaceBetween: 10, centeredSlides: true, loop: true,
+            autoplay: { delay: 10000, disableOnInteraction: false },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            breakpoints: {
+                640: { slidesPerView: 3, spaceBetween: 15 },
+                1024: { slidesPerView: 5, spaceBetween: 20 },
+                1400: { slidesPerView: 7, spaceBetween: 20 }
+            }
+        });
+    </script>
+</body>
+</html>
