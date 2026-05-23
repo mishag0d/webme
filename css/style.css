@@ -404,3 +404,87 @@ body {
     margin-bottom: 15px;
     border: 3px solid var(--color-white);
 }
+
+/* =========================================
+   OPTIMIZACIÓN PARA CELULARES (MÓVILES)
+   ========================================= */
+
+/* 1. ELIMINAR EL ESPACIO NEGRO LATERAL (Obligatorio en todo momento) */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Reglas exclusivas para pantallas de celular */
+@media (max-width: 768px) {
+    
+    /* 2. HACER QUE EL MENÚ SEA DESLIZABLE */
+    .nav-links {
+        overflow-x: auto; /* Permite deslizar hacia los lados */
+        white-space: nowrap; /* Mantiene los enlaces en una sola línea */
+        -webkit-overflow-scrolling: touch; /* Deslizamiento suave en pantallas táctiles */
+        padding-bottom: 10px; /* Da un respiro al diseño */
+    }
+    
+    /* Ocultar la barra de scroll para que se vea limpio */
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 3. ENCUADRAR TU ROSTRO EN LA PORTADA */
+    .hero {
+        /* 'center top' le dice al celular que empiece a mostrar la foto desde arriba hacia abajo, 
+           así no corta tu cabeza o rostro. Si aún no cuadra, intenta con 'right top' o 'left top' */
+        background-position: center top; 
+        height: 100vh; /* Asegura que la portada cubra toda la altura de la pantalla del celular */
+    }
+}
+
+
+/* =========================================
+   INICIO DEL "ESCUDO" PARA CELULARES
+   Nada de esto afectará a la computadora
+   ========================================= */
+
+/* =========================================
+   OPTIMIZACIÓN EXCLUSIVA PARA CELULARES
+   ========================================= */
+
+/* Parche global para evitar que la pantalla baile hacia los lados */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    /* Separación del menú en móvil */
+    .navbar { 
+        gap: 20px; 
+    }
+    
+    .logo { 
+        flex-shrink: 0; 
+    }
+    
+    /* Hacer el menú deslizable con el dedo */
+    .nav-links {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+    }
+    
+    /* Ocultar la barra de scroll del menú */
+    .nav-links::-webkit-scrollbar { 
+        display: none; 
+    }
+    
+    /* Encuadrar tu rostro en la portada */
+    .hero {
+        background-position: center top; 
+        height: 100vh;
+    }
+}
