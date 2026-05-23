@@ -149,7 +149,53 @@
         .social-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
         .social-link { width: 50px; height: 50px; background: #222; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; font-size: 1.3rem; transition: 0.3s; border: 1px solid #333; }
         .social-link:hover { background: var(--color-accent); color: #000; transform: translateY(-5px); }
+/* --- 9. OPTIMIZACIÓN EXCLUSIVA PARA CELULARES --- */
+        
+        /* ELIMINA EL ESPACIO NEGRO LATERAL A LA FUERZA */
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+        }
 
+        @media (max-width: 768px) {
+            
+            /* 1. SEPARACIÓN Y DESLIZAMIENTO DEL MENÚ */
+            .navbar { 
+                padding: 15px 15px !important; 
+                justify-content: flex-start !important; /* Pone todo a la izquierda */
+            }
+            
+            .logo { 
+                margin-right: 30px !important; /* Fuerza el espacio entre tu nombre y el menú */
+                flex-shrink: 0 !important; 
+            }
+            
+            .nav-links {
+                display: flex !important;
+                overflow-x: auto !important; /* Activa el deslizamiento táctil */
+                white-space: nowrap !important;
+                -webkit-overflow-scrolling: touch !important;
+                width: 100% !important; /* Le da el ancho necesario para poder deslizar */
+                padding-bottom: 5px !important;
+                gap: 20px !important; /* Espacio entre Inicio, Mascotas, etc. */
+            }
+            
+            .nav-links::-webkit-scrollbar { display: none !important; }
+            
+            /* 2. ENCUADRE PERFECTO DE TU FOTO */
+            .hero {
+                /* El "80% center" obliga al celular a mirar hacia el lado derecho de la imagen original */
+                background-position: 80% center !important; 
+                height: 100vh !important;
+            }
+
+            /* 3. PARCHE PARA QUE LAS OTRAS SECCIONES NO ROMPAN LA PANTALLA */
+            .about-grid, .gallery-container {
+                gap: 30px !important;
+                padding: 0 20px !important;
+            }
+        }
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .about-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
