@@ -30,21 +30,37 @@
             line-height: 1.6;
         }
 
-        /* --- 2. NAV & HERO --- */
+        /* --- 2. NAV & HERO (VERSIÓN GENERAL / PC) --- */
         .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; /* Padding reducido para alinear mejor */
-            background: rgba(5,5,5,0.95); position: sticky; top: 0; z-index: 1000;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 20px 5%; 
+            background: #111111 !important; /* Fondo negro sólido para PC y móvil */
+            
+            /* FIJA LA BARRA EN EL TECHO SIEMPRE */
+            position: fixed !important; 
+            top: 0 !important; 
+            left: 0 !important;
+            width: 100% !important;
+            z-index: 999999 !important; /* Capa superior absoluta */
             border-bottom: 1px solid #222;
         }
+        
         .logo { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: #fff; }
         .highlight { color: var(--color-accent); }
         
-        .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+        /* CORRECCIÓN VERTICAL DE PC: Mantiene el menú en una sola línea horizontal */
+        .nav-links { 
+            display: flex !important; 
+            flex-direction: row !important;
+            gap: 30px; 
+            list-style: none; 
+            align-items: center; 
+        }
         .nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--color-accent); }
 
-        /* CORRECCIÓN BOTÓN CONTACTO DEL MENÚ */
         .nav-btn {
             padding: 10px 25px !important;
             background: var(--color-accent);
@@ -58,33 +74,25 @@
         .nav-btn:hover { background: #fff; transform: translateY(-2px); }
 
         .hero {
-            height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
             background: radial-gradient(circle, rgba(20,20,20,0.6), #050505), url('assets/img/portada.png');
             background-size: cover; background-position: center;
+            padding-top: 80px !important; /* Evita que el menú tape el contenido de la portada */
         }
         .hero h1 { font-size: 4rem; margin-bottom: 20px; font-weight: 900; line-height: 1; }
         
-        /* Botón Grande de la Portada */
         .btn { padding: 15px 40px; background: var(--color-accent); color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; text-transform: uppercase; display: inline-block; transition: 0.3s; cursor: pointer; }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,183,197,0.3); }
 
-        /* REDES SOCIALES EN PORTADA (NUEVO) */
-        .hero-socials {
-            display: flex; gap: 25px; justify-content: center; margin-top: 40px;
-        }
-        .hero-socials a {
-            color: rgba(255,255,255,0.7); font-size: 1.8rem; transition: 0.3s;
-        }
+        .hero-socials { display: flex; gap: 25px; justify-content: center; margin-top: 40px; }
+        .hero-socials a { color: rgba(255,255,255,0.7); font-size: 1.8rem; transition: 0.3s; text-decoration: none; }
         .hero-socials a:hover { color: var(--color-accent); transform: scale(1.2); }
 
         /* --- 3. GALERÍA --- */
         .gallery-section { padding: 80px 0; background: #000; position: relative; }
         .gallery-container { width: 100%; margin: 0 auto; position: relative; padding: 0 60px; }
         .swiper { width: 100%; padding: 20px 0; }
-        .swiper-slide { 
-            height: auto; aspect-ratio: 1 / 1; border-radius: 15px; overflow: hidden; opacity: 0.4; transition: 0.5s; 
-            border: 1px solid #333;
-        }
+        .swiper-slide { height: auto; aspect-ratio: 1 / 1; border-radius: 15px; overflow: hidden; opacity: 0.4; transition: 0.5s; border: 1px solid #333; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
         .swiper-slide-active { opacity: 1; transform: scale(1.1); z-index: 10; border: 2px solid var(--color-accent); box-shadow: 0 0 30px rgba(255,183,197,0.3); }
 
@@ -94,22 +102,13 @@
         .swiper-button-next { right: 15px !important; }
 
         /* --- 4. SOBRE MÍ --- */
-        .about-section {
-            padding: 120px 5%; background: #080808; 
-            display: flex; justify-content: center; align-items: center;
-        }
+        .about-section { padding: 120px 5%; background: #080808; display: flex; justify-content: center; align-items: center; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; max-width: 1500px; align-items: center; width: 100%; }
-        
-        .about-img-frame { 
-            position: relative; border-radius: 30px; border: 1px solid #333; overflow: hidden; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
+        .about-img-frame { position: relative; border-radius: 30px; border: 1px solid #333; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
         .about-img-frame img { width: 100%; display: block; }
-        
         .about-text h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; font-weight: 900; }
         .subtitle { font-size: 1.5rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px; font-weight: 700; }
         .desc { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; max-width: 600px; line-height: 1.8; }
-        
         .stats-bar { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid #333; padding-top: 30px; }
         .stat-item h3 { font-size: 2.5rem; color: #fff; margin-bottom: 5px; }
         .stat-item p { color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
@@ -118,7 +117,6 @@
         .services-section { background: var(--color-surface); padding: 120px 5%; text-align: center; border-top: 1px solid #222; }
         .section-header h2 { font-size: 3rem; margin-bottom: 15px; }
         .section-subtitle { color: #888; font-size: 1.2rem; margin-bottom: 60px; }
-
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
         .service-card { background: #1a1a1a; padding: 50px 40px; border-radius: 20px; transition: 0.4s; border-bottom: 5px solid transparent; text-align: left; }
         .service-card:hover { transform: translateY(-15px); border-bottom-color: var(--color-accent); background: #222; }
@@ -132,11 +130,8 @@
         .pet-card { background: rgba(255,255,255,0.6); padding: 30px; border-radius: 30px; backdrop-filter: blur(10px); width: 250px; }
         .pet-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 5px solid #fff; }
 
-        /* --- 7. SETUP (NUEVO) --- */
-        .setup-section { 
-            padding: 100px 5%; background: #0b0b0b; border-top: 1px solid #333;
-            background-image: radial-gradient(#222 1px, transparent 1px); background-size: 30px 30px;
-        }
+        /* --- 7. SETUP --- */
+        .setup-section { padding: 100px 5%; background: #0b0b0b; border-top: 1px solid #333; background-image: radial-gradient(#222 1px, transparent 1px); background-size: 30px 30px; }
         .tech-font { font-family: var(--font-tech); }
         .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
         .spec-card { background: rgba(18, 18, 18, 0.9); border: 1px solid #333; padding: 25px; position: relative; }
@@ -149,9 +144,8 @@
         .social-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
         .social-link { width: 50px; height: 50px; background: #222; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; font-size: 1.3rem; transition: 0.3s; border: 1px solid #333; }
         .social-link:hover { background: var(--color-accent); color: #000; transform: translateY(-5px); }
-/* --- 9. OPTIMIZACIÓN EXCLUSIVA PARA CELULARES --- */
-        
-        /* ELIMINA EL ESPACIO NEGRO LATERAL A LA FUERZA */
+
+        /* --- 9. ESCUDO RESISTENTE EXCLUSIVO PARA CELULARES --- */
         html, body {
             overflow-x: hidden !important;
             max-width: 100vw !important;
@@ -159,45 +153,78 @@
         }
 
         @media (max-width: 768px) {
-            
-            /* 1. SEPARACIÓN Y DESLIZAMIENTO DEL MENÚ */
+            /* Menú alineado para deslizar con el dedo de forma limpia */
             .navbar { 
                 padding: 15px 15px !important; 
-                justify-content: flex-start !important; /* Pone todo a la izquierda */
+                justify-content: flex-start !important; 
             }
             
             .logo { 
-                margin-right: 30px !important; /* Fuerza el espacio entre tu nombre y el menú */
+                margin-right: 30px !important; 
                 flex-shrink: 0 !important; 
             }
             
             .nav-links {
                 display: flex !important;
-                overflow-x: auto !important; /* Activa el deslizamiento táctil */
+                flex-direction: row !important; /* Mantiene la fila en móvil */
+                overflow-x: auto !important; /* Activa deslizamiento horizontal */
+                overflow-y: hidden !important; /* Bloquea salto vertical */
                 white-space: nowrap !important;
                 -webkit-overflow-scrolling: touch !important;
-                width: 100% !important; /* Le da el ancho necesario para poder deslizar */
+                width: 100% !important; 
                 padding-bottom: 5px !important;
-                gap: 20px !important; /* Espacio entre Inicio, Mascotas, etc. */
+                gap: 20px !important; 
             }
             
             .nav-links::-webkit-scrollbar { display: none !important; }
             
-            /* 2. ENCUADRE PERFECTO DE TU FOTO */
+            /* Ajuste de Portada: Texto a la izquierda y enfoque en tu rostro */
             .hero {
-                /* El "80% center" obliga al celular a mirar hacia el lado derecho de la imagen original */
                 background-position: 80% center !important; 
                 height: 100vh !important;
+                display: flex !important;
+                justify-content: flex-start !important;
+                padding-left: 20px !important;
             }
 
-            /* 3. PARCHE PARA QUE LAS OTRAS SECCIONES NO ROMPAN LA PANTALLA */
+            .hero-content {
+                text-align: left !important;
+                max-width: 75% !important;
+                margin-left: 0 !important;
+            }
+
+            .hero h1 { font-size: 2.5rem !important; line-height: 1.1 !important; }
+
+            /* Centrado adaptivo para secciones inferiores */
             .about-grid, .gallery-container {
                 gap: 30px !important;
                 padding: 0 20px !important;
+                display: block !important;
+                text-align: center !important;
+            }
+
+            .about-text h2 {
+                font-size: 2.5rem !important;
+                line-height: 1.1 !important;
+                margin: 30px auto !important;
+            }
+
+            .subtitle, .desc {
+                margin-left: auto !important;
+                margin-right: auto !important;
+                max-width: 90% !important;
+            }
+
+            .stats-bar {
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                gap: 20px !important;
+                padding-top: 20px !important;
             }
         }
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
+
+        /* RESPONSIVE IPADS / TABLETS */
+        @media (max-width: 1024px) and (min-width: 769px) {
             .about-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
             .hero h1 { font-size: 3rem; }
             .gallery-container { padding: 0 40px; }
@@ -205,8 +232,6 @@
             .swiper-button-prev { left: 0 !important; }
             .swiper-button-next { right: 0 !important; }
         }
-
-        
     </style>
 </head>
 <body>
@@ -232,7 +257,7 @@
             </div>
 
             <div class="hero-socials" data-aos="fade-up" data-aos-delay="400">
-                <a href="https://www.tiktok.com/@masielgamer" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.tiktok.com/@masielplays" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 <a href="https://www.instagram.com/masielgamer" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@masielgamer7" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://www.twitch.tv/masielplays" target="_blank" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
@@ -292,7 +317,6 @@
                         <h3 style="color:#fff;">+6 Años</h3>
                         <p>UGC & Influencer</p>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -395,8 +419,8 @@
         </div>
         
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=masimoon5@gmail.com" target="_blank" class="btn btn-primary" data-aos="fade-up" data-aos-delay="300">
-    <i class="fa-solid fa-envelope"></i> Contactar por Correo
-</a>
+            <i class="fa-solid fa-envelope"></i> Contactar por Correo
+        </a>
 
         <div style="margin-top: 60px; color: #444; font-size: 0.9rem;">
             <p>&copy; 2026 MasielPlays | Tech Developer, UGC Creator & Gamer</p>
@@ -407,17 +431,14 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script>
-        // 1. INICIAR ANIMACIONES
         AOS.init({ duration: 1000, once: true });
 
-        // 2. PARCHE "ANTIBUG" PARA QUE NO DESAPAREZCA NADA
         window.addEventListener('load', function() {
             setTimeout(function() {
                 AOS.refresh(); 
             }, 500);
         });
 
-        // 3. SCROLL SUAVE (CORRECCIÓN)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -429,7 +450,6 @@
             });
         });
 
-        // 4. CARRUSEL
         new Swiper(".mySwiper", {
             slidesPerView: 2, spaceBetween: 10, centeredSlides: true, loop: true,
             autoplay: { delay: 5000, disableOnInteraction: false },
