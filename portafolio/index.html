@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio UGC | MasielGamer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- ESTILOS LIMPIOS Y ORDENADOS -->
+    <style>
+        /* --- 1. BASE --- */
+        :root {
+            --color-accent: #FFB7C5; 
+            --color-bg: #050505; 
+            --color-surface: #121212; 
+            --font-primary: 'Montserrat', sans-serif;
+            --font-tech: 'Share Tech Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. NAVEGACIÓN --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; background: #111111 !important; position: fixed !important; 
+            top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important; 
+            border-bottom: 1px solid #222;
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: #fff; }
+        .highlight { color: var(--color-accent); }
+        .nav-links { display: flex !important; flex-direction: row !important; gap: 30px; list-style: none; align-items: center; }
+        .nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--color-accent); }
+        .nav-btn { padding: 10px 25px !important; background: var(--color-accent); color: #000 !important; border-radius: 50px; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-btn:hover { background: #fff; transform: translateY(-2px); }
+        .btn { padding: 15px 40px; background: var(--color-accent); color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; text-transform: uppercase; display: inline-block; transition: 0.3s; cursor: pointer; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,183,197,0.3); }
+
+        /* --- 3. GALERÍA --- */
+        .gallery-section { padding: 80px 0; background: #000; position: relative; }
+        .gallery-container { width: 100%; margin: 0 auto; position: relative; padding: 0 60px; }
+        .swiper { width: 100%; padding: 20px 0; }
+        .swiper-slide { height: auto; aspect-ratio: 1 / 1; border-radius: 15px; overflow: hidden; opacity: 0.4; transition: 0.5s; border: 1px solid #333; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .swiper-slide-active { opacity: 1; transform: scale(1.1); z-index: 10; border: 2px solid var(--color-accent); box-shadow: 0 0 30px rgba(255,183,197,0.3); }
+        .swiper-button-prev, .swiper-button-next { color: var(--color-accent) !important; font-weight: bold; width: 35px; height: 35px; }
+        .swiper-button-next::after, .swiper-button-prev::after { font-size: 20px !important; }
+        .swiper-button-prev { left: 15px !important; }
+        .swiper-button-next { right: 15px !important; }
+
+        /* --- 4. SOBRE MÍ --- */
+        .about-section { padding: 150px 5% 100px; background: #080808; display: flex; justify-content: center; align-items: center; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; max-width: 1500px; align-items: center; width: 100%; }
+        .about-img-frame { position: relative; border-radius: 30px; border: 1px solid #333; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .about-img-frame img { width: 100%; display: block; }
+        .about-text h2 { font-size: 4rem; line-height: 1; margin-bottom: 20px; font-weight: 900; }
+        .subtitle { font-size: 1.5rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px; font-weight: 700; }
+        .desc { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; max-width: 600px; line-height: 1.8; }
+        .stats-bar { display: flex; gap: 40px; margin-top: 40px; border-top: 1px solid #333; padding-top: 30px; }
+        .stat-item h3 { font-size: 2.5rem; color: #fff; margin-bottom: 5px; }
+        .stat-item p { color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- 5. MARCAS Y PORTAFOLIO --- */
+        .brands-container { 
+            display: flex; flex-direction: column; gap: 30px; align-items: center; margin-top: 40px; 
+        }
+        .brands-circle-grid { 
+            display: grid; 
+            grid-template-columns: repeat(10, 1fr); 
+            gap: 20px; 
+            justify-content: center; 
+            width: 100%; 
+            max-width: 1400px;
+        }
+
+        .brand-circle {
+            width: 120px;
+            height: 120px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(255,183,197,0.1);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        .brand-circle:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 30px rgba(255,183,197,0.5);
+            border: 2px solid var(--color-accent);
+            z-index: 2;
+        }
+
+        .brand-circle img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Si la imagen carga correctamente, ocultamos el span con el nombre escrito */
+        .brand-circle img + span {
+            display: none;
+        }
+
+        /* Si la imagen falla (onerror), mostramos el nombre en negro centrado */
+        .brand-circle span {
+            color: #000000;
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* --- TARIFAS Y CONTENIDO --- */
+        .pricing-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 50px; }
+        .pricing-card { background: #111; border: 1px solid #333; border-radius: 20px; padding: 40px 30px; width: 320px; text-align: center; transition: 0.3s; position: relative;}
+        .pricing-card:hover { border-color: var(--color-accent); transform: translateY(-10px); }
+        .pricing-card h3 { color: var(--color-accent); font-size: 1.5rem; margin-bottom: 10px; text-transform: uppercase; }
+        .pricing-price { font-size: 3rem; color: #fff; font-weight: 900; margin-bottom: 20px; line-height: 1; }
+        .pricing-features { list-style: none; margin-bottom: 30px; color: #aaa; text-align: left; }
+        .pricing-features li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
+        .pricing-features i { color: var(--color-accent); margin-top: 5px; }
+        .why-me-text { font-size: 1.25rem; color: #ccc; line-height: 1.9; max-width: 800px; margin: 0 auto; text-align: center; }
+
+        /* --- 6. RESPONSIVE CELULARES Y TABLETS --- */
+        html, body { overflow-x: hidden !important; max-width: 100vw !important; width: 100% !important; }
+        @media (max-width: 1024px) {
+            .brands-circle-grid { grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 15px !important; justify-content: flex-start !important; }
+            .logo { margin-right: 30px !important; flex-shrink: 0 !important; }
+            .nav-links { display: flex !important; flex-direction: row !important; overflow-x: auto !important; overflow-y: hidden !important; white-space: nowrap !important; -webkit-overflow-scrolling: touch !important; width: 100% !important; padding-bottom: 5px !important; gap: 20px !important; }
+            .nav-links::-webkit-scrollbar { display: none !important; }
+            .about-grid, .gallery-container { gap: 30px !important; padding: 0 20px !important; display: block !important; text-align: center !important; }
+            .about-text h2 { font-size: 2.5rem !important; line-height: 1.1 !important; margin: 30px auto !important; }
+            .subtitle, .desc { margin-left: auto !important; margin-right: auto !important; max-width: 90% !important; }
+            .stats-bar { justify-content: center !important; flex-wrap: wrap !important; gap: 20px !important; padding-top: 20px !important; }
+            .brands-circle-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+            .brand-circle { width: 90px; height: 90px; padding: 10px; }
+            .brand-circle span { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="logo">Masiel<span class="highlight">Gamer</span></div>
+        <ul class="nav-links">
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="index.html" style="color: var(--color-accent); font-weight: 800;"></i> Portafolio</a></li>
+    <li><a href="../mascotas/index.html">Mascotas</a></li>
+    <li><a href="../servicios.html">Servicios</a></li>
+    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=contactomasiel@gmail.com" target="_blank" class="nav-btn">Contacto</a></li>
+</ul>
+    </nav>
+
+    <!-- 1. DESCRIPCIÓN -->
+    <section id="about" class="about-section">
+        <div class="about-grid">
+            <div class="about-img-frame" data-aos="fade-right">
+                <img src="../assets/img/perfil.jpeg" alt="Profile">
+            </div>
+            <div class="about-text" data-aos="fade-left">
+                <h2>DETRÁS DEL<br><span class="highlight">NICKNAME</span></h2>
+                <p class="subtitle">Masiel | Level 26 | Perú</p>
+                <p class="desc">
+                    ¡Hola! Soy Masiel. Como <strong>Tech Developer</strong>, me apasiona la lógica, el código y la tecnología. En mi lado más creativo, soy creadora de contenido UGC enfocada en <strong>estilo de vida, belleza y vlogs</strong>, creando conexiones auténticas para las marcas. Y cuando no estoy programando o grabando, me encuentras en mi faceta de gamer competitiva.
+                </p>
+                <div class="stats-bar">
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                        <h3 style="color:#fff;">Dota 2</h3>
+                        <p>6K MMR • Support</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                        <h3 style="color:#fff;">+10 Años</h3>
+                        <p>Gaming Exp</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <h3 style="color:#fff;">+6 Años</h3>
+                        <p>UGC & Influencer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. CARRUSEL -->
+    <section class="gallery-section" data-aos="fade-up">
+        <div class="gallery-container">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="../assets/img/f1.jpg" alt="1"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f2.jpg" alt="2"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f3.jpg" alt="3"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f4.jpeg" alt="4"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f5.jpeg" alt="5"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f6.jpeg" alt="6"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f7.JPG" alt="7"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f8.jpg" alt="8"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f9.jpg" alt="9"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f10.JPG" alt="10"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f11.JPG" alt="11"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f12.JPG" alt="12"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f13.jpg" alt="13"></div>
+                    <div class="swiper-slide"><img src="../assets/img/f14.JPG" alt="14"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MARCAS -->
+    <section style="padding: 100px 5%; background: #0a0a0a;">
+        <div style="text-align: center;" data-aos="fade-up">
+            <h2 style="font-size: 3rem; font-weight: 900;">MARCAS <span class="highlight">ALIADAS</span></h2>
+        </div>
+
+        <div class="brands-container">
+            <!-- Fila 1 -->
+            <div class="brands-circle-grid">
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Natura_logo.svg/512px-Natura_logo.svg.png" alt="Natura" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>NATURA</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Avon_Products_logo.svg" alt="Avon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>AVON</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://images.rappi.pe/marketplace/store_type_1648864408178.png" alt="Cyzone" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>CYZONE</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://logo.clearbit.com/logitech.com" alt="Logitech" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>LOGITECH</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://images.seeklogo.com/logo-png/42/1/hyperx-logo-png_seeklogo-425410.png" alt="HyperX" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>HYPERX</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9Nr3ruVvR1FRwIXoVkShySSoSYDhH5G1Xk_xl76cAlQ&s=10" alt="CeraVe" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>CERAVE</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdL5eYEr_LkZ4sUplM-lhTJUJ1rS1k5H8zLOlI63cA1A&s=10" alt="Herbal" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>HERBAL</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://preview.redd.it/opinions-on-the-logo-of-la-roche-posay-v0-qfhr9byg2kzg1.jpeg?auto=webp&s=86e7b45b8406383cd637bee7f0d54d0372931e6c" alt="La Roche" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>LA ROCHE</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://images.seeklogo.com/logo-png/30/1/head-shoulders-logo-png_seeklogo-301511.png" alt="H&S" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>H&S</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Betway_logo.jpg" alt="Betway" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>BETWAY</span></div>
+            </div>
+            <!-- Fila 2 -->
+            <div class="brands-circle-grid">
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD7D2__epW9MPJ5h6TwREfAO7eEdE8cFLEU9vjnZpPIw&s=10" alt="Eucerin" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>EUCERIN</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://images.seeklogo.com/logo-png/14/1/vichy-logo-png_seeklogo-148778.png" alt="Vichy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>VICHY</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://vectorseek.com/wp-content/uploads/2021/01/Pantene-Logo-Vector.jpg" alt="Pantene" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>PANTENE</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY8lCglmiy0xpcOqJbmJ6Q3-58EQ3JbY-0tPsxWMQ_L9-XYjND7yASrGkG&s=10" alt="Secret" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>SECRET</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://images.seeklogo.com/logo-png/53/1/loreal-elvive-logo-png_seeklogo-536079.png" alt="L'Oréal" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>L'ORÉAL</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://images.seeklogo.com/logo-png/28/1/covergirl-logo-png_seeklogo-289258.png" alt="Covergirl" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>COVERGIRL</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://i.pinimg.com/736x/73/8d/3c/738d3c24087009330c1f293f06615a28.jpg" alt="Pond's" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>POND'S</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://img.logo.dev/temu.com?token=live_6a1a28fd-6420-4492-aeb0-b297461d9de2&size=128&retina=true&format=png" alt="Temu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>TEMU</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://mir-s3-cdn-cf.behance.net/projects/404/c1ef6b249435207.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png" alt="Ricocat" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>RICOCAT</span></div>
+                <div class="brand-circle" data-aos="zoom-in"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpaoQ69HAlfZ-QyKfSCA_RxFGDL4tsjRtqAQOvDYkW5FhhHbkMZF3j9UzQ&s=10" alt="Ricocan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span>RICOCAN</span></div>
+            </div>
+        </div>
+    </section>
+    <!-- 4. TARIFAS -->
+    <section style="padding: 100px 5%; background: #050505;">
+        <div style="text-align: center;">
+            <h2 style="font-size: 3rem; font-weight: 900;">MIS <span class="highlight">TARIFAS</span></h2>
+            <p style="color: #aaa; margin-top: 10px;">Soluciones de contenido adaptadas a los objetivos de tu marca.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Paquete 1 -->
+            <div class="pricing-card">
+                <h3>Video UGC</h3>
+                <div class="pricing-price">$120 <span style="font-size: 1rem; color: #888;">USD</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> 1 Video vertical (15-60s)</li>
+                    <li><i class="fa-solid fa-check"></i> Formato TikTok / Reels</li>
+                    <li><i class="fa-solid fa-check"></i> Edición dinámica y subtítulos</li>
+                    <li><i class="fa-solid fa-check"></i> 1 Ronda de revisión</li>
+                </ul>
+                <a href="../index.html#contact" class="btn">Solicitar</a>
+            </div>
+
+            <!-- Paquete 2 (Destacado) -->
+            <div class="pricing-card" style="border-color: var(--color-accent); transform: scale(1.05);">
+                <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: var(--color-accent); color: #000; padding: 5px 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; font-weight: bold; font-size: 0.8rem;">MÁS POPULAR</div>
+                <h3 style="margin-top: 20px;">Pack Creador</h3>
+                <div class="pricing-price">$300 <span style="font-size: 1rem; color: #000;">USD</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> 3 Videos UGC verticales</li>
+                    <li><i class="fa-solid fa-check"></i> Diferentes ganchos (Hooks)</li>
+                    <li><i class="fa-solid fa-check"></i> Conceptos variados</li>
+                    <li><i class="fa-solid fa-check"></i> 2 Rondas de revisión</li>
+                </ul>
+                <a href="../index.html#contact" class="btn">Solicitar</a>
+            </div>
+
+            <!-- Paquete 3 -->
+            <div class="pricing-card">
+                <h3>Lifestyle & Setup</h3>
+                <div class="pricing-price">$200 <span style="font-size: 1rem; color: #888;">USD</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> 1 Video Integración orgánica</li>
+                    <li><i class="fa-solid fa-check"></i> 3 Fotografías HQ para redes</li>
+                    <li><i class="fa-solid fa-check"></i> Mención/Uso en Battlestation</li>
+                    <li><i class="fa-solid fa-check"></i> Mención de atributos clave</li>
+                </ul>
+                <a href="../index.html#contact" class="btn">Solicitar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ¿POR QUÉ YO? -->
+    <section style="padding: 120px 5%; background: #0a0a0a; border-top: 1px solid #222;" data-aos="fade-up">
+        <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+            <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 30px;">¿POR QUÉ <span class="highlight">ELEGIRME?</span></h2>
+            <p class="why-me-text">Mi perfil es la unión perfecta entre la analítica de una ingeniera y la creatividad de una creadora UGC con 6 años de trayectoria. Entiendo los KPIs, la retención y la psicología de la audiencia. No solo hago contenido que se ve increíble, diseño una estrategia visual que conecta orgánicamente.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" style="background: #000; padding: 80px 5%; border-top: 1px solid #111; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: white;" data-aos="fade-up">¿LISTO PARA <span class="highlight">CREAR?</span></h2>
+        <p style="color: #aaa; margin-bottom: 50px; font-size: 1.1rem;" data-aos="fade-up" data-aos-delay="100">
+            Encuéntrame en mis redes o envíame un correo para colaboraciones.
+        </p>
+        
+        <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap;" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://www.tiktok.com/@masielplays" target="_blank" style="width: 50px; height: 50px; background: #222; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; font-size: 1.3rem; transition: 0.3s; border: 1px solid #333;" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@masielgamer7" target="_blank" style="width: 50px; height: 50px; background: #222; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; font-size: 1.3rem; transition: 0.3s; border: 1px solid #333;" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/masielgamer" target="_blank" style="width: 50px; height: 50px; background: #222; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; font-size: 1.3rem; transition: 0.3s; border: 1px solid #333;" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contactomasiel@gmail.com" target="_blank" class="btn" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-solid fa-envelope"></i> Contactar por Correo
+        </a>
+
+        <div style="margin-top: 60px; color: #444; font-size: 0.9rem;">
+            <p>&copy; 2026 MasielPlays | Tech Developer, UGC Creator & Gamer</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ 
+            duration: 800, 
+            once: true,
+            offset: 50,
+            disableMutationObserver: false
+        });
+
+        window.addEventListener('load', function() {
+            AOS.refresh();
+        });
+        
+        new Swiper(".mySwiper", {
+            slidesPerView: 2, spaceBetween: 10, centeredSlides: true, loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            breakpoints: {
+                640: { slidesPerView: 3, spaceBetween: 15 },
+                1024: { slidesPerView: 5, spaceBetween: 20 },
+                1400: { slidesPerView: 7, spaceBetween: 20 }
+            }
+        });
+    </script>
+</body>
+</html>
