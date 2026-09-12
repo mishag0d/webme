@@ -6,6 +6,14 @@
 
 /* --- 0. FUENTES LOCALES DE ALTA FIDELIDAD & VELOCIDAD --- */
 @font-face {
+    font-family: 'Pinyon Script';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/PinyonScript-Regular.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'Style Script';
     font-style: normal;
     font-weight: 400;
@@ -70,7 +78,7 @@
 
     /* Tipografías */
     --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-    --font-script: 'Style Script', 'Alex Brush', 'Allura', 'Great Vibes', cursive;
+    --font-script: 'Pinyon Script', 'Alex Brush', cursive;
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     /* Transiciones & Sombras Suaves */
