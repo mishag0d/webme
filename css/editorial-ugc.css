@@ -1,0 +1,1271 @@
+/* ==========================================================================
+   MASIELGAMER — UGC CREATOR & INFLUENCER
+   EDITORIAL WHITE & GUINDA LUXURY DESIGN SYSTEM
+   Inspiración: The Studio by Julie Granger & Aline Bogaerts
+   ========================================================================== */
+
+/* --- 0. FUENTES LOCALES DE ALTA FIDELIDAD & VELOCIDAD --- */
+@font-face {
+    font-family: 'Style Script';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/StyleScript-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Alex Brush';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/AlexBrush-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Allura';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/Allura-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Great Vibes';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/GreatVibes-Regular.ttf') format('truetype');
+}
+
+/* --- 1. DESIGN TOKENS --- */
+:root {
+    /* Paleta Guinda / Borgoña Profundo */
+    --guinda-dark: #2a0b12;
+    --guinda-deep: #480f1b;
+    --guinda-primary: #6b1727;
+    --guinda-rich: #851c31;
+    --guinda-accent: #a3243d;
+    --guinda-glow: rgba(107, 23, 39, 0.2);
+
+    /* Flor de Cerezo / Sakura Blush */
+    --sakura-pure: #ffffff;
+    --sakura-white: #fffbfc;
+    --sakura-soft: #fdf2f4;
+    --sakura-petal: #f7b5c4;
+    --sakura-bloom: #e88ea1;
+    --sakura-glow: rgba(247, 181, 196, 0.35);
+
+    /* Fondos Blancos Editoriales & Crema (Inspiración Julie Granger) */
+    --bg-white: #ffffff;
+    --bg-ivory: #faf8f5;
+    --bg-cream: #f4efe9;
+    --bg-card-julie: #f7f4ee;
+    --bg-card-hover: #fcfbfa;
+
+    /* Textos */
+    --text-heading: #240d14;
+    --text-body: #4a383d;
+    --text-muted: #7d656b;
+    --text-light: #9c858b;
+
+    /* Tipografías */
+    --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-script: 'Style Script', 'Alex Brush', 'Allura', 'Great Vibes', cursive;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Transiciones & Sombras Suaves */
+    --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    --shadow-subtle: 0 8px 25px rgba(74, 15, 27, 0.04);
+    --shadow-card: 0 12px 32px rgba(74, 15, 27, 0.06);
+    --shadow-card-hover: 0 20px 45px rgba(107, 23, 39, 0.12);
+    --shadow-cover: 0 25px 60px rgba(42, 11, 18, 0.14);
+}
+
+/* --- 2. RESET & BASE --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-white);
+    color: var(--text-body);
+    line-height: 1.65;
+    overflow-x: hidden;
+    position: relative;
+}
+
+::selection {
+    background-color: var(--guinda-primary);
+    color: #fff;
+}
+
+/* Canvas para pétalos flotantes */
+#sakura-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.9;
+}
+
+.content-layer {
+    position: relative;
+    z-index: 2;
+}
+
+/* Tipografías */
+.font-serif { font-family: var(--font-serif); }
+.font-script { font-family: var(--font-script); }
+.font-sans { font-family: var(--font-sans); }
+
+.text-guinda { color: var(--guinda-primary); }
+.text-italic { font-style: italic; font-family: var(--font-serif); }
+
+/* --- 3. NAVEGACIÓN SUPERIOR (THE STUDIO STYLE: MasielGamer CON M MAYÚSCULA) --- */
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 16px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(42, 11, 18, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(247, 181, 196, 0.18);
+    transition: var(--transition-smooth);
+}
+
+.site-nav.scrolled {
+    padding: 12px 6%;
+    background: rgba(36, 9, 15, 0.97);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.nav-links-left {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    transition: var(--transition-smooth);
+    position: relative;
+    padding: 4px 0;
+}
+
+.nav-link:hover {
+    color: var(--sakura-petal);
+}
+
+/* Monograma Central: Masiel GAMER con M Mayúscula */
+.nav-brand-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-brand-script {
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    color: var(--sakura-petal);
+    line-height: 0.85;
+}
+
+.nav-brand-main {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.nav-social-mini {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-social-mini a {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.nav-social-mini a:hover {
+    color: var(--sakura-petal);
+    transform: translateY(-2px);
+}
+
+.nav-btn-julie {
+    text-decoration: none;
+    padding: 8px 24px;
+    border-radius: 50px;
+    border: 1px solid rgba(247, 181, 196, 0.45);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+}
+
+.nav-btn-julie:hover {
+    background: var(--sakura-petal);
+    color: var(--guinda-dark);
+    border-color: var(--sakura-petal);
+    box-shadow: 0 4px 15px var(--sakura-glow);
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+/* --- 4. HERO PORTADA: TIPOGRAFÍA EN VIVO, AMPLIA Y ELEGANTE --- */
+.hero-cover-fullscreen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url('../assets/img/portada.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 85% 35%;
+    padding: 100px 7% 40px;
+    overflow: hidden;
+}
+
+/* Viñeta sutil sobre la pared izquierda (sin lavar los colores de la foto) */
+.hero-cover-fullscreen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-wall-content {
+    position: relative;
+    z-index: 3;
+    max-width: 620px;
+    text-align: left;
+    margin-left: 2%;
+}
+
+/* Nombre Caligráfico Grande, Nítido y Protagónico (Sin difuminado blanco) */
+.hero-live-name {
+    font-family: var(--font-script);
+    font-size: clamp(4.6rem, 7.8vw, 7.2rem);
+    font-weight: 400;
+    color: var(--guinda-deep);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap;
+    text-shadow: none;
+    user-select: none;
+}
+
+.hero-live-heart {
+    font-size: 0.44em;
+    color: #f7a8b8;
+    display: inline-block;
+    transform: rotate(14deg) translateY(-8px);
+    filter: drop-shadow(0 2px 6px rgba(247, 168, 184, 0.4));
+    animation: heartFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes heartFloat {
+    0% { transform: rotate(12deg) translateY(-6px) scale(1); }
+    100% { transform: rotate(18deg) translateY(-12px) scale(1.14); }
+}
+
+/* Subtítulo UGC Desahogado, Nítido & Espaciado (Cero Amontonamiento) */
+.hero-wall-sub {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+    font-weight: 700;
+    letter-spacing: 3.8px;
+    text-transform: uppercase;
+    color: var(--guinda-deep);
+    margin-bottom: 28px;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 10px;
+    text-shadow: none;
+}
+
+.hero-wall-sub .sub-sep {
+    color: var(--sakura-bloom);
+    font-size: 0.85em;
+    opacity: 0.85;
+}
+
+/* Botones de Redes Sociales Ligeros & Estilizados (Sin círculos blancos toscos) */
+.hero-wall-socials {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.hero-wall-social-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1.2px solid rgba(107, 23, 39, 0.28);
+    color: var(--guinda-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: var(--transition-smooth);
+}
+
+.hero-wall-social-btn:hover {
+    background: var(--guinda-primary);
+    color: #ffffff;
+    border-color: var(--guinda-primary);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 20px rgba(107, 23, 39, 0.25);
+}
+
+/* --- 5. INTRO EDITORIAL CON FLOR DE CEREZO & TEXTO DE IMPACTO --- */
+.intro-sakura-section {
+    position: relative;
+    padding: 75px 6% 80px;
+    background: var(--bg-white);
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px solid rgba(107, 23, 39, 0.05);
+}
+
+.intro-sakura-bg {
+    position: absolute;
+    top: -15px;
+    right: 2%;
+    width: 440px;
+    max-width: 42vw;
+    opacity: 0.42;
+    pointer-events: none;
+    filter: drop-shadow(0 10px 20px rgba(107, 23, 39, 0.08));
+    animation: gentleSway 9s ease-in-out infinite alternate;
+}
+
+@keyframes gentleSway {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(1.8deg) scale(1.03); }
+}
+
+.intro-header-box {
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    border-radius: 50px;
+    background: var(--sakura-soft);
+    color: var(--guinda-primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.intro-title-main {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-heading);
+    line-height: 1.1;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+}
+
+.intro-title-main span {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--guinda-primary);
+}
+
+.intro-desc-text {
+    font-size: 1.1rem;
+    color: var(--text-body);
+    max-width: 660px;
+    margin: 0 auto 30px;
+    line-height: 1.75;
+}
+
+.intro-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-guinda-solid {
+    padding: 14px 34px;
+    border-radius: 50px;
+    background: var(--guinda-primary);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 8px 24px var(--guinda-glow);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-guinda-solid:hover {
+    background: var(--guinda-rich);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(107, 23, 39, 0.3);
+    color: #fff;
+}
+
+.btn-guinda-outline {
+    padding: 14px 32px;
+    border-radius: 50px;
+    background: transparent;
+    border: 1.5px solid var(--guinda-primary);
+    color: var(--guinda-primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-guinda-outline:hover {
+    background: var(--sakura-soft);
+    transform: translateY(-3px);
+}
+
+/* --- 6. SOBRE MASIEL (MÁS ARRIBA, QUOTE DIFUMINADO Y SIN STATS) --- */
+.about-clean-section {
+    padding: 90px 6% 100px;
+    background: var(--bg-ivory);
+    position: relative;
+    border-top: 1px solid rgba(107, 23, 39, 0.06);
+}
+
+.about-clean-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 4.5rem;
+    align-items: center;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.about-photo-clean-wrap {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.about-photo-clean-frame {
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(74, 15, 27, 0.12);
+    background: #fff;
+}
+
+.about-photo-clean-img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+}
+
+.pill-clean-floating {
+    position: absolute;
+    background: #ffffff;
+    color: var(--guinda-primary);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 24px rgba(74, 15, 27, 0.1);
+    white-space: nowrap;
+    z-index: 5;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pill-clean-floating:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: var(--guinda-primary);
+    color: #fff;
+}
+
+.pill-p1 { top: 10%; left: -25px; }
+.pill-p2 { top: 38%; right: -25px; }
+.pill-p3 { bottom: 18%; left: -20px; }
+.pill-p4 { bottom: 6%; right: -15px; }
+
+.about-script-title {
+    font-family: var(--font-script);
+    font-size: clamp(3.2rem, 5vw, 4.6rem);
+    color: var(--guinda-primary);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.about-serif-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-heading);
+    line-height: 1.12;
+    margin-bottom: 22px;
+}
+
+/* Quote con fondo difuminado suave (sin tarjeta ni bordes rígidos) */
+.about-quote-diffuse {
+    position: relative;
+    padding: 24px 22px;
+    margin-bottom: 24px;
+    background: radial-gradient(ellipse at 25% 50%, rgba(247, 181, 196, 0.35), transparent 75%);
+    border-radius: 20px;
+}
+
+.about-quote-diffuse p {
+    font-family: var(--font-serif);
+    font-size: 1.38rem;
+    font-style: italic;
+    color: var(--guinda-primary);
+    line-height: 1.65;
+}
+
+.about-short-desc {
+    font-size: 1.06rem;
+    color: var(--text-body);
+    line-height: 1.85;
+    margin-bottom: 24px;
+}
+
+/* --- 7. MARCAS ALIADAS (CÍRCULOS ORIGINALES MEJORADOS) --- */
+.brands-top-section {
+    padding: 85px 6% 95px;
+    background: var(--bg-white);
+    text-align: center;
+    position: relative;
+}
+
+.section-eyebrow-guinda {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--guinda-primary);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-heading-clean {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-heading);
+    line-height: 1.15;
+    margin-bottom: 14px;
+}
+
+.section-heading-clean span {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--guinda-primary);
+}
+
+.brands-circle-grid-white {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    max-width: 1300px;
+    margin: 45px auto 0;
+}
+
+.brand-circle-white {
+    width: 105px;
+    height: 105px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 14px;
+    box-shadow: 0 6px 20px rgba(74, 15, 27, 0.06);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.brand-circle-white:hover {
+    transform: translateY(-6px) scale(1.1);
+    box-shadow: 0 14px 30px rgba(107, 23, 39, 0.18);
+    background-color: #fff;
+}
+
+.brand-circle-white img {
+    max-width: 82%;
+    max-height: 82%;
+    object-fit: contain;
+    display: block;
+}
+
+.brand-circle-white img + span {
+    display: none;
+}
+
+.brand-circle-white span {
+    color: var(--guinda-dark);
+    font-weight: 800;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* --- 8. CARRUSEL FOTOGRÁFICO SIN BORDES --- */
+.carousel-clean-section {
+    padding: 20px 0 70px;
+    background: var(--bg-white);
+    position: relative;
+}
+
+.swiper-clean {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.slide-borderless {
+    height: 380px;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(74, 15, 27, 0.08);
+    transition: var(--transition-smooth);
+    background: var(--bg-ivory);
+}
+
+.slide-borderless img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.slide-borderless:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(107, 23, 39, 0.16);
+}
+
+.slide-borderless:hover img {
+    transform: scale(1.05);
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: var(--guinda-primary) !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transition: var(--transition-smooth);
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+    background: var(--guinda-primary);
+    color: #fff !important;
+    transform: scale(1.1);
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+/* --- 9. LO QUE OFREZCO: TARJETAS JULIE GRANGER (SIN BORDES) --- */
+.services-julie-section {
+    padding: 100px 6% 120px;
+    background: var(--bg-ivory);
+    position: relative;
+}
+
+.julie-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    max-width: 1380px;
+    margin: 55px auto 0;
+}
+
+.julie-card {
+    background: var(--bg-card-julie);
+    border-radius: 28px;
+    padding: 38px 24px 34px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-card);
+}
+
+.julie-card:nth-child(2) {
+    transform: translateY(24px);
+}
+.julie-card:nth-child(4) {
+    transform: translateY(24px);
+}
+
+.julie-card:hover {
+    transform: translateY(-8px) !important;
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.julie-number-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(107, 23, 39, 0.08);
+    color: var(--guinda-primary);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.julie-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.julie-card-desc {
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 22px;
+    min-height: 48px;
+}
+
+.julie-card-photo-wrap {
+    width: 100%;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: #eae5de;
+}
+
+.julie-card-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.julie-card:hover .julie-card-photo {
+    transform: scale(1.06);
+}
+
+.julie-card-link {
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--guinda-primary);
+    letter-spacing: 0.8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--guinda-primary);
+    width: fit-content;
+    margin: auto auto 0;
+    transition: var(--transition-smooth);
+}
+
+.julie-card-link:hover {
+    color: var(--guinda-accent);
+    border-bottom-color: var(--guinda-accent);
+    gap: 12px;
+}
+
+/* --- 10. PET COLLABS: BALTO & LASKA (ORGÁNICO, SIN TARJETAS NI BORDES DUROS) --- */
+.pets-clean-section {
+    padding: 95px 6% 105px;
+    background: var(--bg-white);
+    text-align: center;
+}
+
+.pets-grid-organic {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    max-width: 1050px;
+    margin: 50px auto 0;
+}
+
+.pet-item-organic {
+    flex: 1;
+    min-width: 290px;
+    max-width: 440px;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.pet-photo-organic-wrap {
+    width: 100%;
+    height: 340px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 22px;
+    box-shadow: 0 14px 35px rgba(107, 23, 39, 0.08);
+    transition: var(--transition-smooth);
+    background: var(--bg-ivory);
+}
+
+.pet-photo-organic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.pet-item-organic:hover .pet-photo-organic-wrap {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(107, 23, 39, 0.16);
+}
+
+.pet-item-organic:hover .pet-photo-organic {
+    transform: scale(1.05);
+}
+
+.pet-name-organic {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 4px;
+}
+
+.pet-role-organic {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--guinda-primary);
+    margin-bottom: 12px;
+}
+
+.pet-desc-organic {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+/* --- 11. CONTACTO & FOOTER (ESTILO ALINE BOGAERTS - GUINDA PROFUNDO) --- */
+.contact-section-julie {
+    padding: 120px 6% 80px;
+    background: radial-gradient(circle at 50% 20%, rgba(133, 28, 49, 0.45), transparent 70%),
+                var(--guinda-dark);
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+}
+
+.contact-script-clean {
+    font-family: var(--font-script);
+    font-size: clamp(3.5rem, 5.5vw, 5.2rem);
+    color: var(--sakura-petal);
+    display: block;
+    line-height: 0.95;
+    margin-bottom: 10px;
+}
+
+.contact-title-white {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.contact-subtitle-white {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.75;
+}
+
+.contact-pill-box {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border-radius: 30px;
+    padding: 38px 30px;
+    max-width: 620px;
+    margin: 0 auto 45px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.email-copy-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 50px;
+    padding: 8px 10px 8px 24px;
+    margin-bottom: 22px;
+    gap: 12px;
+}
+
+.email-txt {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--sakura-white);
+    word-break: break-all;
+}
+
+.btn-copy-action {
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: var(--guinda-primary);
+    border: 1px solid rgba(247, 181, 196, 0.3);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-copy-action:hover {
+    background: var(--guinda-accent);
+}
+
+.contact-button-pair {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.footer-social-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+}
+
+.footer-social-badge {
+    padding: 10px 22px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-social-badge:hover {
+    background: var(--guinda-primary);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Toast */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--guinda-dark);
+    color: #fff;
+    border: 1px solid var(--sakura-petal);
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    z-index: 99999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- 12. RESPONSIVE CELULARES & TABLETS --- */
+@media (max-width: 1024px) {
+    .julie-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .julie-card:nth-child(2), .julie-card:nth-child(4) {
+        transform: translateY(0);
+    }
+
+    .about-clean-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3.5rem;
+    }
+
+    .hero-cover-fullscreen {
+        min-height: 75vh;
+        background-position: 80% 0%;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-nav {
+        padding: 14px 5%;
+    }
+
+    .nav-links-left {
+        display: none;
+    }
+
+    .nav-social-mini {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .mobile-nav-drawer {
+        position: fixed;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: rgba(42, 11, 18, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: var(--transition-smooth);
+        z-index: 999;
+    }
+
+    .mobile-nav-drawer.open {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobile-nav-drawer a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+    .nav-btn-julie {
+        padding: 6px 14px;
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+    }
+
+    @media (max-width: 540px) {
+        .nav-btn-julie {
+            display: none;
+        }
+    }
+
+    .hero-cover-fullscreen {
+        min-height: 85vh;
+        background-position: 75% 0%;
+        padding: 95px 5% 45px;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .hero-cover-fullscreen::before {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.6) 55%, rgba(255, 255, 255, 0.95) 100%);
+    }
+
+    .hero-wall-content {
+        max-width: 100%;
+        margin-left: 0;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .hero-live-name {
+        font-size: clamp(2.8rem, 11.5vw, 3.8rem);
+        gap: 10px;
+        justify-content: center;
+        white-space: nowrap;
+        margin-bottom: 14px;
+    }
+
+    .hero-wall-sub {
+        font-size: 0.78rem;
+        letter-spacing: 2.2px;
+        margin-bottom: 22px;
+        gap: 6px;
+        justify-content: center;
+        white-space: normal;
+        flex-wrap: wrap;
+    }
+
+    .hero-wall-socials {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero-wall-social-btn {
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+    }
+
+    .julie-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-circle-white {
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+    }
+
+    .brand-circle-white span {
+        font-size: 0.65rem;
+    }
+
+    .pill-clean-floating {
+        position: static;
+        margin: 8px auto;
+        display: block;
+        width: fit-content;
+    }
+
+    .pets-grid-organic {
+        gap: 35px;
+    }
+
+    .pet-photo-organic-wrap {
+        height: 280px;
+    }
+
+    .email-copy-strip {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 16px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" fill="none">
+  <!-- Rama estilizada de cerezo / Sakura branch -->
+  <path d="M500 50 C420 80, 360 140, 310 220 C270 280, 210 340, 110 390 C60 415, 20 425, 0 430" stroke="#4a1521" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <path d="M360 140 C340 100, 310 70, 270 50" stroke="#4a1521" stroke-width="4.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M310 220 C320 270, 350 310, 380 340" stroke="#4a1521" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+  <path d="M210 340 C190 300, 160 270, 120 250" stroke="#4a1521" stroke-width="3.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M150 370 C130 420, 100 460, 60 480" stroke="#4a1521" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Flores de Cerezo / Sakura Blossoms (Pétalos en tonos blush, rosa y centro guinda) -->
+  <g transform="translate(270, 50)">
+    <circle cx="-12" cy="-8" r="14" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="12" cy="-8" r="14" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="-14" cy="10" r="14" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="14" cy="10" r="14" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="16" r="13" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="0" cy="0" r="6" fill="#8b1e32"/>
+    <circle cx="0" cy="0" r="3" fill="#e5cb98"/>
+  </g>
+
+  <g transform="translate(360, 140) scale(1.2)">
+    <circle cx="-12" cy="-8" r="14" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="12" cy="-8" r="14" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="-14" cy="10" r="14" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="14" cy="10" r="14" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="0" cy="16" r="13" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="0" r="6" fill="#6b1727"/>
+    <circle cx="0" cy="0" r="3" fill="#e5cb98"/>
+  </g>
+
+  <g transform="translate(310, 220) scale(1.1)">
+    <circle cx="-12" cy="-8" r="14" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="12" cy="-8" r="14" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="-14" cy="10" r="14" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="14" cy="10" r="14" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="0" cy="16" r="13" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="0" r="6" fill="#8b1e32"/>
+    <circle cx="0" cy="0" r="3" fill="#e5cb98"/>
+  </g>
+
+  <g transform="translate(210, 340) scale(1.25)">
+    <circle cx="-12" cy="-8" r="14" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="12" cy="-8" r="14" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="-14" cy="10" r="14" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="14" cy="10" r="14" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="0" cy="16" r="13" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="0" r="6" fill="#6b1727"/>
+    <circle cx="0" cy="0" r="3" fill="#e5cb98"/>
+  </g>
+
+  <g transform="translate(120, 250) scale(0.9)">
+    <circle cx="-10" cy="-6" r="12" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="10" cy="-6" r="12" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="-12" cy="8" r="12" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="12" cy="8" r="12" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="0" cy="12" r="11" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="0" r="5" fill="#8b1e32"/>
+  </g>
+
+  <g transform="translate(380, 340) scale(0.95)">
+    <circle cx="-10" cy="-6" r="12" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="10" cy="-6" r="12" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="-12" cy="8" r="12" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="12" cy="8" r="12" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="0" cy="12" r="11" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="0" r="5" fill="#6b1727"/>
+  </g>
+
+  <g transform="translate(60, 480) scale(0.85)">
+    <circle cx="-10" cy="-6" r="12" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="10" cy="-6" r="12" fill="#fce8ec" opacity="0.9"/>
+    <circle cx="-12" cy="8" r="12" fill="#fae8eb" opacity="0.9"/>
+    <circle cx="12" cy="8" r="12" fill="#f3b6c3" opacity="0.85"/>
+    <circle cx="0" cy="12" r="11" fill="#f7b5c4" opacity="0.85"/>
+    <circle cx="0" cy="0" r="5" fill="#8b1e32"/>
+  </g>
+
+  <!-- Capullos pequeños de sakura -->
+  <ellipse cx="290" cy="180" rx="8" ry="12" transform="rotate(30 290 180)" fill="#f3b6c3" opacity="0.8"/>
+  <ellipse cx="170" cy="310" rx="7" ry="10" transform="rotate(-40 170 310)" fill="#fae8eb" opacity="0.8"/>
+  <ellipse cx="400" cy="100" rx="8" ry="11" transform="rotate(15 400 100)" fill="#f7b5c4" opacity="0.8"/>
+</svg>
