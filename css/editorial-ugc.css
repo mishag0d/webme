@@ -292,6 +292,20 @@ body {
     user-select: none;
 }
 
+/* Salvaguarda permanente: Cero corazones estáticos en hero */
+.hero-live-heart,
+.hero-live-name .hero-live-heart,
+.hero-live-name::after,
+.hero-live-name::before {
+    display: none !important;
+    content: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+}
+
 /* Subtítulo UGC Desahogado, Nítido & Espaciado (Cero Amontonamiento) */
 .hero-wall-sub {
     font-family: var(--font-sans);
@@ -1176,21 +1190,22 @@ body {
     }
 
     .hero-live-name {
+        display: block;
+        text-align: center;
         font-size: clamp(2.8rem, 11.5vw, 3.8rem);
-        gap: 10px;
-        justify-content: center;
         white-space: nowrap;
         margin-bottom: 14px;
     }
 
     .hero-wall-sub {
-        font-size: 0.78rem;
-        letter-spacing: 2.2px;
+        font-size: clamp(0.72rem, 3.2vw, 0.88rem);
+        letter-spacing: 1.8px;
         margin-bottom: 22px;
         gap: 6px;
         justify-content: center;
         white-space: normal;
         flex-wrap: wrap;
+        padding: 0 6px;
     }
 
     .hero-wall-socials {
