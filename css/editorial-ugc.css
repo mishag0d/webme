@@ -301,10 +301,10 @@ body {
     margin-left: 2%;
 }
 
-/* Nombre Caligráfico Grande, Nítido y Protagónico (Sin difuminado blanco) */
+/* Nombre Caligráfico Pinyon Script Nítido y Protagónico */
 .hero-live-name {
     font-family: var(--font-script);
-    font-size: clamp(4.6rem, 7.8vw, 7.2rem);
+    font-size: clamp(5rem, 8.5vw, 8rem);
     font-weight: 400;
     color: var(--guinda-deep);
     line-height: 1.05;
@@ -350,9 +350,10 @@ body {
 }
 
 .hero-wall-sub .sub-sep {
-    color: var(--sakura-bloom);
+    color: var(--guinda-deep); /* Mismo color que el texto */
     font-size: 0.85em;
-    opacity: 0.85;
+    opacity: 0.7;
+    margin: 0 4px;
 }
 
 /* Botones de Redes Sociales Ligeros & Estilizados (Sin círculos blancos toscos) */
